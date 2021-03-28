@@ -2,14 +2,14 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-01-25 13:39:52
+ * @Last Modified time: 2021-03-28 11:36:02
  */
 import { uniqWith, isEqual } from 'lodash';
 import * as types from '../types';
 import i18n from '@/lang';
 import config from '@/config';
 import router from '@/routes';
-import { setToken, setGray, setUserName, removeToken, removeGray, removeWechatAvatar, set_vDealerName } from '@/utils/cookies';
+import { setToken, setGray, setUserName, removeToken, removeGray, removeWechatAvatar } from '@/utils/cookies';
 import variables from '@/assets/css/variables.scss';
 import localDict from '@/utils/localDict';
 import { getNavList, getAllDict, getStarMenuList, getCommonMenuList, createMenuPoint } from '@/api/login';
@@ -86,10 +86,9 @@ const actions = {
     setToken(params.token);
     params.gray && setGray(params.gray);
     setUserName(params.name);
-    set_vDealerName(params.vDealerName);
     commit({
       type: types.LOGININFO,
-      data: { name: params.name, dealerName: params.vDealerName }
+      data: { name: params.name }
     });
   },
   createLogout({ dispatch, commit, state }, params) {
@@ -194,9 +193,7 @@ const actions = {
         // 数据字典规则：如果有重复的 Code，服务端覆盖客户端
         data = {
           ...localDict,
-          ...res.data.dict,
-          dealerBranch: res.data.branch?.map(x => ({ value: x.ID, cnText: x.VBranchName })) ?? [],
-          userBranch: res.data.userbranch?.map(x => ({ value: x.ID, cnText: x.VBranchName })) ?? []
+          ...res.data?.dict
         };
       }
     }

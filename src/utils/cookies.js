@@ -2,7 +2,7 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2020-10-26 08:44:22
+ * @Last Modified time: 2021-03-28 11:18:38
  */
 import Cookies from 'js-cookie';
 
@@ -22,8 +22,3 @@ export const removeUserName = () => Cookies.remove('username');
 export const getWechatAvatar = () => localStorage.getItem('avatar');
 export const setWechatAvatar = val => localStorage.setItem('avatar', val);
 export const removeWechatAvatar = () => localStorage.removeItem('avatar');
-
-// 业务 cookie
-export const get_vDealerName = () => Cookies.get('vDealerName');
-export const set_vDealerName = val => Cookies.set('vDealerName', val);
-export const remove_vDealerName = () => Cookies.remove('vDealerName');

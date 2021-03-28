@@ -2,7 +2,7 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-01-17 18:50:16
+ * @Last Modified time: 2021-03-28 11:03:11
  */
 'use strict';
 const path = require('path');
@@ -20,19 +20,12 @@ module.exports = {
     // 请求代理配置 -> can be modified
     proxyTable: {
       '/api': {
-        target: 'http://62.234.197.49:80',
+        target: 'http://127.0.0.1:3000',
         changeOrigin: true, // 支持跨域
         // secure: false, // 支持 https
         pathRewrite: {
           '^/api': '/api' // 连接开发环境，走网关的那种
           // '^/api/[a-zA-Z_]+/': '/' // 本地开发，不走网关，直接调本地服务
-        }
-      },
-      '/ws': {
-        target: 'ws://62.234.197.49:80',
-        ws: true,
-        pathRewrite: {
-          '^/ws': '/ws'
         }
       }
     },

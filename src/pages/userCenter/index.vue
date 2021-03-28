@@ -21,20 +21,22 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 09:24:35
+ * @Last Modified time: 2021-03-28 11:36:44
  **/
 import { mapActions } from 'vuex';
+import { getUserName } from '../../utils/cookies';
 
 export default {
   name: 'PersonalCenter',
   data() {
     return {
-      username: getUser()
+      username: getUserName()
     };
   },
   methods: {
     ...mapActions('app', ['createLogout']),
     logoutHandle() {
+      this.createLogout();
       // 需要走后台推出接口
       this.$router.push({ path: '/login' });
     }

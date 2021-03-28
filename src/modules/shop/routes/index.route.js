@@ -2,7 +2,7 @@
  * @Author: 焦质晔
  * @Date: 2020-05-17 09:36:33
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 09:51:57
+ * @Last Modified time: 2021-03-28 10:49:35
  */
 export default {
   // webpackChunkName -> webpack 在打包编译时，生成的文件路径(名)，格式：模块名称/用例名称 service/spt1001
@@ -11,6 +11,11 @@ export default {
       path: '/custom/list',
       meta: { keepAlive: true },
       component: () => import(/* webpackChunkName: "test/demo" */ '@shop/pages/user/index')
+    },
+    {
+      path: '/goods/list',
+      meta: { keepAlive: true },
+      component: () => import(/* webpackChunkName: "test/demo" */ '@shop/pages/goods/index')
     },
     {
       path: '/order/list',

@@ -11,7 +11,7 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 09:25:59
+ * @Last Modified time: 2021-03-28 11:38:08
  **/
 export default {
   name: 'Logo',
@@ -77,6 +77,7 @@ export default {
     }
   }
   .link {
+    color: $menuText;
     font-size: 18px;
     text-indent: 20px;
   }

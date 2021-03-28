@@ -2,7 +2,7 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2020-10-13 15:04:42
+ * @Last Modified time: 2021-03-28 11:27:38
  */
 import axios from '@/api/fetch';
 
@@ -10,10 +10,10 @@ import axios from '@/api/fetch';
 export const doLogin = params => axios.post(`/api/sys/sysLogin/user/Login`, params);
 
 // 获取菜单
-export const getNavList = params => axios.post(`/api/sys/sysLogin/user/getUserMenus`, params);
+export const getNavList = params => axios.get(`/api/sys/getMenuList`, { params });
 
 // 获取数据字典
-export const getAllDict = params => axios.post(`/api/sys/sysLogin/user/getDictionary`, params);
+export const getAllDict = params => axios.get(`/api/sys/getDictList`, { params });
 
 // 获取收藏导航
 export const getStarMenuList = params => axios.get(`/api/sys/sysLogin/user/getfavorite`, { params });
@@ -35,4 +35,3 @@ export const getMessageList = params => axios.get(`/api/dlmsys/notice/getNoticeI
 
 // 获取待办列表
 export const getTodoList = params => axios.get(`/api/sys/xxxx/xxxx`, { params });
-
