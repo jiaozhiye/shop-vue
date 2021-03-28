@@ -55,7 +55,7 @@ export default {
         });
         this.$router.push({ path: '/' });
       } else {
-        this.$message.error(response.message);
+        this.$message.error(res.message);
       }
     }
   }
