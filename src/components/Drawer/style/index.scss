@@ -1,0 +1,78 @@
+/*
+ * @Author: 焦质晔
+ * @Date: 2020-05-23 13:14:53
+ * @Last Modified by: 焦质晔
+ * @Last Modified time: 2021-01-29 11:02:07
+ */
+@import '../../style/index.scss';
+
+$prefix-cls: '#{$v-prefix}-drawer--wrapper';
+
+.#{$prefix-cls} {
+  @include reset-component();
+  .el-drawer.rtl {
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
+  }
+  .el-drawer__header {
+    flex-shrink: 0;
+    height: 48px;
+    margin: 0;
+    padding: 0 10px 0 15px;
+    border-bottom: 1px solid $border-color-base;
+    box-sizing: border-box;
+    .drawer-title {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      .title {
+        flex: 1;
+        font-size: 16px;
+      }
+      .fullscreen {
+        padding: 5px;
+        padding-right: 2px;
+        line-height: 1;
+        color: $text-color-secondary;
+        cursor: pointer;
+        i {
+          font-size: 18px;
+          font-weight: 700;
+        }
+      }
+    }
+    .el-drawer__close-btn {
+      padding: 5px;
+      font-size: 22px;
+      line-height: 1;
+      outline: none;
+      .el-icon-close {
+        font-weight: 700;
+        color: $text-color-secondary;
+      }
+    }
+  }
+  .el-drawer__body {
+    height: 0;
+    .drawer-container {
+      height: 100%;
+      padding: $padding-base !important;
+      padding-left: 15px !important;
+      overflow-y: auto;
+      word-break: normal;
+    }
+    .drawer-loading {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  // small
+  &-sm {
+    // ...
+  }
+  // large
+  &-lg {
+    // ...
+  }
+}

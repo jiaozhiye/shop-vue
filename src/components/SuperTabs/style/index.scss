@@ -1,0 +1,50 @@
+/*
+ * @Author: 焦质晔
+ * @Date: 2020-05-23 13:14:53
+ * @Last Modified by: 焦质晔
+ * @Last Modified time: 2020-10-27 20:03:10
+ */
+@import '../../style/index.scss';
+
+$prefix-cls: '#{$v-prefix}-super-tab--wrapper';
+
+.#{$prefix-cls} {
+  @include reset-component();
+  .el-tabs__item {
+    height: 36px;
+    line-height: 36px;
+    &.is-disabled {
+      color: $textColorSecondary;
+      cursor: not-allowed;
+    }
+  }
+  .tap-top-exta {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
+  // small
+  &-sm {
+    .el-tabs__item {
+      height: 32px;
+      line-height: 32px;
+    }
+    .tap-top-exta {
+      height: 32px;
+    }
+  }
+  // large
+  &-lg {
+    .el-tabs__item {
+      height: 40px;
+      line-height: 40px;
+    }
+    .tap-top-exta {
+      height: 40px;
+    }
+  }
+}

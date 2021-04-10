@@ -2,10 +2,10 @@
  * @Author: 焦质晔
  * @Date: 2020-05-17 09:32:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 09:47:13
+ * @Last Modified time: 2021-04-10 11:16:53
  */
 import config from '@/config';
 
 export default {
-  SYS: `${config.prefix}/user`
+  USER: `${config.prefix}/user`
 };

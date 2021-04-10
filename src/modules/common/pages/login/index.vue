@@ -2,7 +2,7 @@
   <el-row class="login-wrapper">
     <el-col :span="6" :offset="9">
       <h3 class="welcome">欢迎使用</h3>
-      <el-form ref="form" class="app-form" label-position="top" :model="form" :rules="rules">
+      <el-form ref="form" class="app-form" size="medium" label-position="top" :model="form" :rules="rules">
         <el-form-item label="请输入用户名" prop="username">
           <el-input v-model="form.username" placeholder="用户名"></el-input>
         </el-form-item>

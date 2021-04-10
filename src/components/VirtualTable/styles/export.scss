@@ -1,0 +1,36 @@
+/*
+ * @Author: 焦质晔
+ * @Date: 2020-03-26 11:26:46
+ * @Last Modified by: 焦质晔
+ * @Last Modified time: 2021-03-12 12:37:52
+ */
+.v-export--wrapper {
+  @include button-align(28px);
+  padding: 3px;
+  cursor: pointer;
+  .el-button {
+    @include button-align(28px);
+    padding: 0;
+    color: inherit;
+    border: 0;
+    transition: color 0.3s ease;
+    i {
+      font-size: $v-font-size + 2px;
+      margin-right: 0;
+    }
+    &:hover {
+      color: $v-primary-color;
+    }
+  }
+  &.disabled {
+    color: $v-font-disabled-color;
+    cursor: not-allowed;
+  }
+  &.size--mini {
+    .el-button {
+      i {
+        font-size: $v-font-size;
+      }
+    }
+  }
+}

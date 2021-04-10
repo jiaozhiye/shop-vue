@@ -1,0 +1,51 @@
+/*
+ * @Author: 焦质晔
+ * @Date: 2020-03-18 10:26:46
+ * @Last Modified by: 焦质晔
+ * @Last Modified time: 2020-07-25 11:01:30
+ */
+.v-alert {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 36px;
+  margin-right: $v-module-distance;
+  font-size: $v-font-size;
+  word-wrap: break-word;
+  padding: 0 6px 0 28px;
+  border: 1px solid $v-table-border-color;
+  border-radius: $v-border-radius;
+  background-color: $v-table-header-background-color;
+  i {
+    position: absolute;
+    left: 8px;
+    line-height: 0;
+    font-size: 16px;
+    color: $v-primary-color;
+  }
+  em {
+    display: inline-block;
+    color: $v-primary-color;
+    padding: 0 $v-module-distance;
+    margin-right: -5px;
+    font-style: normal;
+    cursor: pointer;
+  }
+  &.size--medium {
+    height: 36px;
+  }
+  &.size--small {
+    height: 32px;
+  }
+  &.size--mini {
+    height: 28px;
+    padding-left: 26px;
+    font-size: $v-font-size-mini;
+    i {
+      font-size: 14px;
+    }
+  }
+  &.position--bottom {
+    height: 28px !important;
+  }
+}

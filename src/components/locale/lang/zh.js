@@ -2,9 +2,12 @@
  * @Author: 焦质晔
  * @Date: 2020-05-23 22:04:32
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 09:13:42
+ * @Last Modified time: 2020-12-31 12:30:06
  */
+import tableZhLocale from '../../VirtualTable/packages/locale/lang/zh';
+
 export default {
+  ...tableZhLocale,
   baseDialog: {
     fullScreen: '全屏',
     cancelFullScreen: '取消全屏'
