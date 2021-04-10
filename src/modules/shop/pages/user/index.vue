@@ -14,18 +14,27 @@
       :columnsChange="columns => (this.columns = columns)"
     >
       <template slot="default">
-        <el-button type="danger" icon="el-icon-delete">删除</el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="deleteHandle">删除</el-button>
       </template>
     </VirtualTable>
+    <base-dialog :visible.sync="visible" title="用户编辑" width="50%" destroyOnClose>
+      <EditPanel :formData="formData" @close="closeHandle" />
+    </base-dialog>
   </div>
 </template>
 
 <script>
-import { getCustomerList } from '@shop/api/user';
+import { dictionary } from '@/mixins/dictMixin';
+import { getCustomerList, delCustomerRecord } from '@shop/api/user';
+
+import EditPanel from './editPanel';
 
 export default {
   name: 'UserManagement',
+  components: { EditPanel },
+  mixins: [dictionary],
   data() {
+    this.selectedKeys = [];
     return {
       filterList: [
         {
@@ -41,14 +50,19 @@ export default {
         dataKey: 'records'
       },
       selection: {
-        type: 'checkbox'
+        type: 'checkbox',
+        onChange: (val, rows) => {
+          this.selectedKeys = val;
+        }
       },
       exportExcel: {
         fileName: '导出文件.xlsx'
       },
       tablePrint: {
         showLogo: true
-      }
+      },
+      visible: false,
+      formData: null
     };
   },
   methods: {
@@ -58,12 +72,13 @@ export default {
           title: '操作',
           dataIndex: '__action__', // 操作列的 dataIndex 的值不能改
           fixed: 'left',
-          width: 100,
-          render: () => {
+          width: 80,
+          render: (text, row) => {
             return (
               <div>
-                <el-button type="text">编辑</el-button>
-                <el-button type="text">查看</el-button>
+                <el-button type="text" onClick={() => this.editHandle(row)}>
+                  编辑
+                </el-button>
               </div>
             );
           }
@@ -78,9 +93,14 @@ export default {
           }
         },
         {
+          title: '账号',
+          dataIndex: 'account',
+          width: 150
+        },
+        {
           title: '用户名称',
           dataIndex: 'name',
-          width: 200
+          width: 150
         },
         {
           title: '电话号码',
@@ -88,23 +108,23 @@ export default {
           width: 150
         },
         {
-          title: '收获地址',
-          dataIndex: 'address',
-          width: 300
+          title: '收货地址',
+          dataIndex: 'address'
         },
         {
           title: '是否会员',
           dataIndex: 'is_vip',
-          width: 150
+          width: 150,
+          dictItems: this.createDictList('is_VIP')
         },
         {
           title: '会员积分',
-          dataIndex: 'create_on',
+          dataIndex: 'integral',
           width: 150
         },
         {
           title: '注册日期',
-          dataIndex: 'integral',
+          dataIndex: 'create_on',
           width: 150,
           formatType: 'date'
         }
@@ -112,9 +132,28 @@ export default {
     },
     filterChangeHandle(val) {
       this.fetch.params = Object.assign({}, this.fetch.params, val);
+    },
+    editHandle(row) {
+      this.visible = true;
+      this.formData = Object.assign({}, row);
+    },
+    async deleteHandle() {
+      if (!this.selectedKeys.length) {
+        return this.$message.warning('请选择数据！');
+      }
+      const res = await delCustomerRecord({ ids: this.selectedKeys.join(',') });
+      if (res.code === 200) {
+        this.$message.success('删除成功！');
+        this.$refs[`table`].DO_REFRESH();
+      }
+    },
+    closeHandle(isReload) {
+      this.visible = false;
+      this.formData = null;
+      if (isReload) {
+        this.$refs[`table`].DO_REFRESH();
+      }
     }
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
