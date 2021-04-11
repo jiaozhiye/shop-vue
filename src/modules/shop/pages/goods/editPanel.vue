@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 60%">
-      <form-panel ref="formPanel" :formType="type" :cols="1" :initial-value="formData || {}" :list="formList" />
+      <form-panel ref="formPanel" :formType="type" :cols="1" :initial-value="initValue" :list="formList" />
     </div>
     <div
       :style="{
@@ -24,6 +24,7 @@
 
 <script>
 import { dictionary } from '@/mixins/dictMixin';
+import { getConfigHeaders } from '@/api/fetch';
 
 import { addGoddsRecord, updateGoodsInfo } from '@shop/api/goods';
 
@@ -35,6 +36,17 @@ export default {
     return {
       formList: this.createFormList()
     };
+  },
+  computed: {
+    initValue() {
+      const data = Object.assign({}, this.formData);
+      for (let key in data) {
+        if (key === 'img_path') {
+          data[key] = [{ name: data[key], url: data[key] }];
+        }
+      }
+      return data;
+    }
   },
   methods: {
     createFormList() {
@@ -69,7 +81,8 @@ export default {
           style: { width: `calc(100% - 30px)` },
           descOptions: {
             content: '元'
-          }
+          },
+          rules: [{ required: true, message: '请输入商品价格', trigger: 'blur' }]
         },
         {
           type: 'INPUT_NUMBER',
@@ -81,7 +94,8 @@ export default {
           style: { width: `calc(100% - 30px)` },
           descOptions: {
             content: '元'
-          }
+          },
+          rules: [{ required: true, message: '请输入会员价格', trigger: 'blur' }]
         },
         {
           type: 'INPUT_NUMBER',
@@ -89,13 +103,31 @@ export default {
           fieldName: 'inventory',
           options: {
             precision: 0
-          }
+          },
+          rules: [{ required: true, message: '请输入库存数量', trigger: 'blur' }]
+        },
+        {
+          type: 'UPLOAD_IMG',
+          label: '上传图片',
+          fieldName: 'img_path',
+          upload: {
+            headers: getConfigHeaders(),
+            actionUrl: '/api/sys/upload',
+            isCalcHeight: true,
+            limit: 1
+          },
+          rules: [{ required: true, message: '请上传商品图片', trigger: 'change' }]
         }
       ];
     },
     async saveHandle() {
       const [err, data] = await this.$refs[`formPanel`].GET_FORM_DATA();
       if (err) return;
+      for (let key in data) {
+        if (key === 'img_path') {
+          data[key] = data[key][0].url;
+        }
+      }
       // 新增
       if (!this.formData?.id) {
         const res = await addGoddsRecord(data);

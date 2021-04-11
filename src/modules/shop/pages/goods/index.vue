@@ -120,7 +120,10 @@ export default {
         {
           title: '商品图片',
           dataIndex: 'img_path',
-          width: 200
+          width: 200,
+          render: (text, row) => {
+            return <img src={text} height="40" />;
+          }
         },
         {
           title: '商品价格',

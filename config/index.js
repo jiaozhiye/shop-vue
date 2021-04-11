@@ -2,13 +2,13 @@
  * @Author: 焦质晔
  * @Date: 2019-06-20 10:00:00
  * @Last Modified by: 焦质晔
- * @Last Modified time: 2021-03-28 11:03:11
+ * @Last Modified time: 2021-04-11 10:41:30
  */
 'use strict';
 const path = require('path');
 
 // 配置常量
-const HOST = 'localhost';
+const HOST = '127.0.0.1';
 const PORT = 8080;
 
 module.exports = {

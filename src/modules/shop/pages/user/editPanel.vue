@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form-panel ref="formPanel" :cols="2" :initial-value="formData || {}" :list="formList" />
+    <form-panel ref="formPanel" :cols="2" :initial-value="formData" :list="formList" />
     <div
       :style="{
         position: 'absolute',
@@ -64,7 +64,7 @@ export default {
     async saveHandle() {
       const [err, data] = await this.$refs[`formPanel`].GET_FORM_DATA();
       if (err) return;
-      const res = await updateCustomInfo({ id: this.formData.id, ...data });
+      const res = await updateCustomerInfo({ id: this.formData.id, ...data });
       if (res.code === 200) {
         this.$message.success('更新成功！');
         this.cancelHandle(true);
