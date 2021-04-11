@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-06-01 13:23:53
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-06-08 12:52:06
  */
 import { addResizeListener, removeResizeListener } from '../resize-event';

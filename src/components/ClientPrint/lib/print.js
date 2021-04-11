@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-08-02 15:37:32
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-02-01 13:51:33
  */
 import { getLodop } from '../../BasePrint/LodopFuncs';

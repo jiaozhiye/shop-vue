@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-05-19 16:19:58
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-12-15 17:25:54
  */
 import localforage from 'localforage';

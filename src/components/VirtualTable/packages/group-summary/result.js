@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-05-20 09:36:38
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-11-30 15:07:15
  */
 import { maxBy, minBy, sumBy, isObject } from 'lodash';

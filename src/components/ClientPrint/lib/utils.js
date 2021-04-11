@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-05-23 10:58:27
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-08-08 09:44:27
  */
 export const getDPI = () => {

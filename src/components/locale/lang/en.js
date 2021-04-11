@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-05-23 22:04:32
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-12-31 12:30:00
  */
 import tableEnLocale from '../../VirtualTable/packages/locale/lang/en';

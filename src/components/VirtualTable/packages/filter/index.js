@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-03-09 13:18:43
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-08 18:01:35
  */
 import SvgIcon from '../../../SvgIcon';

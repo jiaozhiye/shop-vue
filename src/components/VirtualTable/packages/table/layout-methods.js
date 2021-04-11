@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-02-29 22:17:28
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-09 09:05:03
  */
 import addEventListener from 'add-dom-event-listener';

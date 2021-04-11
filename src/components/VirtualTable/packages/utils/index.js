@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-02-29 14:13:08
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-07 17:17:37
  */
 import { get, set, transform, intersection, isEqual, isObject } from 'lodash';

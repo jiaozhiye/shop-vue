@@ -1,8 +1,8 @@
 <script>
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-02-25 20:12:30
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-04-18 21:16:13
  */
 export default {

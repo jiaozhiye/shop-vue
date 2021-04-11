@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-03-22 14:34:21
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-03 14:28:55
  */
 import { isEqual, isFunction, isObject, get, merge, cloneDeep } from 'lodash';

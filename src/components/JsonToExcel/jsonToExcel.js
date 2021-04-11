@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-02-02 10:26:05
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-12-11 10:17:05
  */
 import { get, isFunction, isObject, isBoolean } from 'lodash';

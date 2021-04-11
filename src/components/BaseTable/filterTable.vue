@@ -1,8 +1,8 @@
 <script>
 /**
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2019-06-20 10:00:00
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2020-06-30 11:19:06
  **/
 import { mergeProps, getOptionProps } from '../_utils/props-util';

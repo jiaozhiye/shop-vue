@@ -1,7 +1,7 @@
 /*
- * @Author: 焦质晔
+ * @Author: mashaoze
  * @Date: 2020-03-01 15:20:02
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-03 13:53:51
  */
 import { columnsFlatMap, throttle, browse, difference, hasOwn, sleep, errorCapture, getCellValue, setCellValue } from '../utils';
