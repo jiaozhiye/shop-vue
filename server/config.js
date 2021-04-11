@@ -10,7 +10,7 @@ const CONF = {
   // 权限校验
   auth: {
     admin_secret: 'admin-token',
-    whitelist: ['/api/sys/login', '/api/website'], // ajax 接口请求的白名单前缀
+    whitelist: ['/api/sys/login'] // ajax 接口请求的白名单前缀
   },
 
   /**
@@ -22,8 +22,8 @@ const CONF = {
     user: 'root',
     db: 'app_cms',
     pass: 'root',
-    char: 'utf8',
-  },
+    char: 'utf8'
+  }
 };
 
 module.exports = CONF;
