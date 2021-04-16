@@ -18,5 +18,9 @@ router.post('/api/goods/getGoodsList', controllers.admin.getGoodsList);
 router.post('/api/goods/addGoddsRecord', controllers.admin.addGoddsRecord);
 router.post('/api/goods/updateGoodsInfo', controllers.admin.updateGoodsInfo);
 router.get('/api/goods/delGoodsRecord', controllers.admin.delGoodsRecord);
+router.post('/api/order/getOrderList', controllers.admin.getOrderList);
+router.get('/api/order/delOrderRecord', controllers.admin.delOrderRecord);
+router.get('/api/order/updateOrderType', controllers.admin.updateOrderType);
+router.get('/api/order/getOrderById', controllers.admin.getOrderById);
 
 module.exports = router;

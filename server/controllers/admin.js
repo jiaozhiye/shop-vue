@@ -18,7 +18,7 @@ const getCustomerList = async (ctx, next) => {
     // 数据库 I/O
     const rows = await db.query(
       `
-        SELECT 
+        SELECT
             t1.id,
             t1.account,
             t1.name,
@@ -29,7 +29,7 @@ const getCustomerList = async (ctx, next) => {
             ${utils.formatDateTime('t1.create_on')} AS create_on
         FROM
             customer t1
-        WHERE 
+        WHERE
             t1.deleted = ? ${title}
         ${pagination}
       `,
@@ -53,9 +53,9 @@ const getCustomerList = async (ctx, next) => {
       code: 200,
       data: {
         records: rows,
-        total,
+        total
       },
-      msg: '',
+      msg: ''
     };
   } catch (e) {
     console.error(e);
@@ -68,12 +68,12 @@ const updateCustomerInfo = async (ctx, next) => {
   try {
     const rows = await db.query(
       `
-        UPDATE 
+        UPDATE
             customer t1
-        SET 
+        SET
             t1.is_vip = ?,
             t1.integral = ?
-        WHERE 
+        WHERE
             t1.id = ?
       `,
       [is_vip, integral, id]
@@ -84,7 +84,7 @@ const updateCustomerInfo = async (ctx, next) => {
       ctx.body = {
         code: 200,
         data: null,
-        msg: '',
+        msg: ''
       };
     }
   } catch (e) {
@@ -98,11 +98,11 @@ const delCustomerRecord = async (ctx, next) => {
   try {
     const rows = await db.query(
       `
-        UPDATE 
+        UPDATE
             customer t1
-        SET 
+        SET
             t1.deleted = ?
-        WHERE 
+        WHERE
             t1.id IN (${db.escape(ids.split(','))})
       `,
       [1]
@@ -113,7 +113,7 @@ const delCustomerRecord = async (ctx, next) => {
       ctx.body = {
         code: 200,
         data: null,
-        msg: '',
+        msg: ''
       };
     }
   } catch (e) {
@@ -134,7 +134,7 @@ const getGoodsList = async (ctx, next) => {
     // 数据库 I/O
     const rows = await db.query(
       `
-        SELECT 
+        SELECT
             t1.id,
             t1.title,
             t1.description,
@@ -146,8 +146,10 @@ const getGoodsList = async (ctx, next) => {
             ${utils.formatDateTime('t1.create_on')} AS create_on
         FROM
             goods t1
-        WHERE 
+        WHERE
             t1.deleted = ? ${titleWhere}
+        ORDER BY
+            t1.create_on DESC
         ${pagination}
       `,
       [0]
@@ -170,9 +172,9 @@ const getGoodsList = async (ctx, next) => {
       code: 200,
       data: {
         records: rows,
-        total,
+        total
       },
-      msg: '',
+      msg: ''
     };
   } catch (e) {
     console.error(e);
@@ -195,7 +197,7 @@ const addGoddsRecord = async (ctx, next) => {
       ctx.body = {
         code: 200,
         data: null,
-        msg: '',
+        msg: ''
       };
     }
   } catch (e) {
@@ -209,9 +211,9 @@ const updateGoodsInfo = async (ctx, next) => {
   try {
     const rows = await db.query(
       `
-        UPDATE 
+        UPDATE
             goods t1
-        SET 
+        SET
             t1.title = ?,
             t1.description = ?,
             t1.type = ?,
@@ -219,7 +221,7 @@ const updateGoodsInfo = async (ctx, next) => {
             t1.price = ?,
             t1.vprice = ?,
             t1.inventory = ?
-        WHERE 
+        WHERE
             t1.id = ?
      `,
       [title, description, type, img_path, price, vprice, inventory, id]
@@ -230,7 +232,7 @@ const updateGoodsInfo = async (ctx, next) => {
       ctx.body = {
         code: 200,
         data: null,
-        msg: '',
+        msg: ''
       };
     }
   } catch (e) {
@@ -244,11 +246,11 @@ const delGoodsRecord = async (ctx, next) => {
   try {
     const rows = await db.query(
       `
-        UPDATE 
+        UPDATE
             goods t1
-        SET 
+        SET
             t1.deleted = ?
-        WHERE 
+        WHERE
             t1.id IN (${db.escape(ids.split(','))})
       `,
       [1]
@@ -259,9 +261,176 @@ const delGoodsRecord = async (ctx, next) => {
       ctx.body = {
         code: 200,
         data: null,
-        msg: '',
+        msg: ''
       };
     }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const getOrderList = async (ctx, next) => {
+  let { currentPage, pageSize, id } = ctx.request.body;
+
+  // 分页
+  const pagination = utils.createPagination(currentPage, pageSize);
+
+  // 查询参数 - 标题
+  const idWhere = id ? ` AND t1.id LIKE ${db.escape(`%${id}%`)}` : '';
+
+  try {
+    // 数据库 I/O
+    const rows = await db.query(
+      `
+        SELECT
+            t1.id,
+            t2.name,
+            t2.phone,
+            t2.address,
+            t1.type,
+            ${utils.formatDateTime('t1.create_on')} AS create_on
+        FROM
+            orders t1, customer t2
+        WHERE
+            t1.customer_id = t2.id AND t1.deleted = ? ${idWhere}
+        ORDER BY
+            t1.create_on DESC
+        ${pagination}
+      `,
+      [0]
+    );
+
+    const [{ total }] = await db.query(
+      `
+        SELECT
+            COUNT(*) AS total
+        FROM
+          orders t1
+        WHERE
+            t1.deleted = ? ${idWhere}
+      `,
+      [0]
+    );
+
+    // 返回数据
+    ctx.body = {
+      code: 200,
+      data: {
+        records: rows,
+        total
+      },
+      msg: ''
+    };
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const delOrderRecord = async (ctx, next) => {
+  const { ids } = ctx.query;
+
+  try {
+    const rows = await db.query(
+      `
+        UPDATE
+            orders t1
+        SET
+            t1.deleted = ?
+        WHERE
+            t1.id IN (${db.escape(ids.split(','))})
+      `,
+      [1]
+    );
+
+    if (rows.affectedRows) {
+      // 返回数据
+      ctx.body = {
+        code: 200,
+        data: null,
+        msg: ''
+      };
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const updateOrderType = async (ctx, next) => {
+  const { id, type } = ctx.query;
+
+  try {
+    const rows = await db.query(
+      `
+        UPDATE
+            orders t1
+        SET
+            t1.type = ?
+        WHERE
+            t1.id = ?
+      `,
+      [type, id]
+    );
+
+    if (rows.affectedRows) {
+      // 返回数据
+      ctx.body = {
+        code: 200,
+        data: null,
+        msg: ''
+      };
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const getOrderById = async (ctx, next) => {
+  const { id } = ctx.query;
+
+  try {
+    const [row] = await db.query(
+      `
+        SELECT
+            t1.id,
+            t1.type
+        FROM
+            orders t1
+        WHERE
+            t1.id=? AND t1.deleted=?
+      `,
+      [id, 0]
+    );
+
+    let goods = await db.query(
+      `
+        SELECT
+          t1.goods_id AS id,
+          t1.buyNumber,
+          t1.price,
+          t2.title,
+          t2.img_path
+        FROM
+          order_middles t1
+        LEFT JOIN
+          goods t2
+        ON
+          t1.goods_id = t2.id
+        WHERE
+          t1.order_id=?
+        AND
+          t1.deleted=?
+      `,
+      [row.id, 0]
+    );
+
+    row.list = goods;
+
+    // 返回数据
+    ctx.body = {
+      code: 200,
+      data: row,
+      msg: ''
+    };
   } catch (e) {
     console.error(e);
   }
@@ -275,4 +444,8 @@ module.exports = {
   addGoddsRecord,
   updateGoodsInfo,
   delGoodsRecord,
+  getOrderList,
+  delOrderRecord,
+  updateOrderType,
+  getOrderById
 };
