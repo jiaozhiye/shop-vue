@@ -1,7 +1,7 @@
 /*
  * @Author: mashaoze
  * @Date: 2020-05-17 09:32:00
- * @Last Modified by: 焦质晔
+ * @Last Modified by: mashaoze
  * @Last Modified time: 2021-04-16 13:03:20
  */
 import config from '@/config';

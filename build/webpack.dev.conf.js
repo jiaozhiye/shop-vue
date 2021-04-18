@@ -56,7 +56,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'public/index.html',
       inject: true,
-      favicon: 'public/favicon.ico',
+      // favicon: 'public/favicon.ico',
       templateParameters: {
         BASE_URL: config.dev.assetsPublicPath + config.dev.assetsSubDirectory
       }
